@@ -1,0 +1,17 @@
+
+kind create cluster --config=k8s/kind.yaml --name=<cluster-name>
+kind get clusters
+kind delete clusters <cluster-name>
+
+kubectl cluster-info --context kind-<cluster-name>
+
+kubectl get nodes
+kubectl get pods
+kubectl get replicasets
+kubectl describe pod <pod-name>
+kubectl delete deployments <name>
+kubectl apply -f k8s/pod.yaml
+
+kubectl port-forward svc/goserver-service <host-port>:<local-port>
+
+kubectl rollout history deployment goserver
