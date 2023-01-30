@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: goserver
-          image: bcdscrypto/go-test:latest
+          image: bcdscrypto/go-test:v3
           resources:
             limits:
               memory: "128Mi"
@@ -26,3 +26,13 @@ spec:
           envFrom:
             - configMapRef:
                 name: goserver-env
+          volumeMounts:
+            - mountPath: "/go/myfamily"
+              name: config
+      volumes:
+        - name: config
+          configMap:
+            name: configmap-family
+            items:
+              - key: members
+                path: "myfamily.txt"
