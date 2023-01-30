@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: goserver
-          image: bcdscrypto/go-test:v3
+          image: bcdscrypto/go-test:v4
           resources:
             limits:
               memory: "128Mi"
@@ -26,6 +26,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: goserver-env
+            - secretRef:
+                name: goserver-secret
           volumeMounts:
             - mountPath: "/go/myfamily"
               name: config
