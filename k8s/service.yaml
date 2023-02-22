@@ -8,6 +8,6 @@ spec:
   type: ClusterIP   # LoadBalancer
   ports:
   - name: goserver-service
-    port: 80
-    targetPort: 80
+    port: 80    # do service
+    targetPort: 80    # do container
     protocol: TCP

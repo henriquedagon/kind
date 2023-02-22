@@ -8,6 +8,7 @@ kubectl cluster-info --context kind-<cluster-name>
 kubectl get nodes
 kubectl get pods
 kubectl get replicasets
+kubectl get deployments
 kubectl describe pod <pod-name>
 kubectl delete deployments <name>
 kubectl apply -f k8s/pod.yaml
@@ -15,3 +16,6 @@ kubectl apply -f k8s/pod.yaml
 kubectl port-forward svc/goserver-service <host-port>:<local-port>
 
 kubectl rollout history deployment goserver
+
+docker exec -it kind-control-plane bash
+crictl images
