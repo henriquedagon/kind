@@ -3,6 +3,8 @@ kind create cluster --config=k8s/kind.yaml --name=<cluster-name>
 kind get clusters
 kind delete clusters <cluster-name>
 
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+
 kubectl cluster-info --context kind-<cluster-name>
 
 kubectl get nodes
@@ -10,8 +12,11 @@ kubectl get pods
 kubectl get replicasets
 kubectl get deployments
 kubectl describe pod <pod-name>
+kubectl top pod <pod-name>
 kubectl delete deployments <name>
-kubectl apply -f k8s/pod.yaml
+kubectl apply -f k8s/deployment.yaml
+kubectl apply -f k8s/configmap-env.yaml -f k8s/configmap-family.yaml -f k8s/secret.yaml -f k8s/service.yaml -f k8s/metrics-server.yaml 
+kubectl rollout restart deployment <deployment_name>
 
 kubectl port-forward svc/goserver-service <host-port>:<local-port>
 
@@ -19,3 +24,9 @@ kubectl rollout history deployment goserver
 
 docker exec -it kind-control-plane bash
 crictl images
+
+watch -n1 kubectl get pods
+
+-------------------
+# Teste de stress
+kubectl run -it fortio --rm --image=fortio/fortio -- load -qps 800 -t 120s -c 70 "http://goserver-service/healthz"
