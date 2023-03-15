@@ -47,9 +47,12 @@ spec:
             # initialDelaySeconds: 15
 
           resources:
+            requests:
+              cpu: "100m"
+              memory: "20Mi"
             limits:
-              memory: "128Mi"
               cpu: "500m"
+              memory: "25Mi"
           envFrom:
             - configMapRef:
                 name: goserver-env
