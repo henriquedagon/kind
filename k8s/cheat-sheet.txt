@@ -42,3 +42,9 @@ kubectl config view     # config do cluster
 kubectl config current-context
 kubectl config set-context dev --namespace=dev --cluster=kind-kind --user=kind-kind
 kubectl config use-context dev
+
+-------------------
+Service Accounts
+
+kubectl get serviceaccounts
+kubectl api-resources
